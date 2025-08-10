@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karachi Schools Search</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="./assest/css/style.css">
+    <link rel="stylesheet" href="./assest/fontawasome/css/all.min.css">
+    <style>
+        body {
+            background-color: #eaf4fc;
+            font-family: 'Poppins', sans-serif;
+            color: #333333;
+        }
+        
+        .header {
+            background-color: #004080;
+            color: white;
+            padding: 15px 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .search-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .map-container {
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        
+        .form-control {
+            border-radius: 5px;
+        }
+        
+        .results-list {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .school-item {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .school-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .school-marker {
+            background-color: #004080;
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<!-- NAVBAR -->
+
+<header>
+  <nav>
+    <div class="navbar">
+      <div class="logo">
+        <i class="fa-duotone fa-solid fa-school-circle-exclamation fa-beat fa-lg" ></i>
+      </div>
+
+      <!-- Hamburger Button -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="school_Info.html">School Info</a>
+        <a href="school_details.html">Admissions</a>
+        <a href="#">Contact</a>
+        <a href="Map.html">Map</a>
+      </div>
+
+       <div class="sign-in-btn">
+        <a href="singIn.html">Sign In</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1>Karachi Schools Search</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <div class="row">
+            <!-- Left Column - Search -->
+            <div class="col-lg-4">
+                <div class="search-card">
+                    <h3 class="mb-4" style="color: #004080;">Search Schools</h3>
+                    
+                    <div class="mb-3">
+                        <label for="schoolSearch" class="form-label">Enter School Name</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="schoolSearch" placeholder="e.g. Karachi Grammar School">
+                            <button class="btn btn-primary" type="button" id="searchBtn">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <p class="text-muted">Popular schools: 
+                            <span class="text-primary" style="cursor:pointer" onclick="fillSearch('Karachi Grammar School')">Grammar</span>, 
+                            <span class="text-primary" style="cursor:pointer" onclick="fillSearch('Beaconhouse')">Beaconhouse</span>, 
+                            <span class="text-primary" style="cursor:pointer" onclick="fillSearch('The City School')">City School</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Results List -->
+                <div class="search-card mt-4">
+                    <h5 style="color: #004080;">Search Results</h5>
+                    <div class="list-group results-list" id="resultsList">
+                        <div class="text-center p-3">Search for schools to see results</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column - Map -->
+            <div class="col-lg-8">
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Real schools in Karachi data
+        const schools = [
+            {
+                id: 1,
+                name: "Karachi Grammar School",
+                location: "Clifton, Karachi",
+                lat: 24.8138,
+                lng: 67.0275,
+                contact: "(021) 35861234",
+                established: 1847,
+                address: "KGS Street, Clifton, Karachi"
+            },
+            {
+                id: 2,
+                name: "Beaconhouse School System - PECHS Campus",
+                location: "PECHS, Karachi",
+                lat: 24.8765,
+                lng: 67.0643,
+                contact: "(021) 34567891",
+                established: 1975,
+                address: "Main Tariq Road, PECHS, Karachi"
+            },
+            {
+                id: 3,
+                name: "The City School - Gulshan Campus",
+                location: "Gulshan-e-Iqbal, Karachi",
+                lat: 24.9065,
+                lng: 67.0771,
+                contact: "(021) 34985678",
+                established: 1978,
+                address: "Block 13-D, Gulshan-e-Iqbal, Karachi"
+            },
+            {
+                id: 4,
+                name: "St. Patrick's High School",
+                location: "Saddar, Karachi",
+                lat: 24.8536,
+                lng: 67.0287,
+                contact: "(021) 35678901",
+                established: 1861,
+                address: "Shahrah-e-Iraq, Saddar, Karachi"
+            },
+            {
+                id: 5,
+                name: "Bay View High School",
+                location: "Clifton, Karachi",
+                lat: 24.8189,
+                lng: 67.0342,
+                contact: "(021) 35872345",
+                established: 1982,
+                address: "Marine Drive, Clifton, Karachi"
+            }
+        ];
+
+        let map;
+        let markers = [];
+
+        // Initialize map centered on Karachi
+        function initMap() {
+            map = L.map('map').setView([24.8607, 67.0011], 12);
+            
+            // Add tile layer (OpenStreetMap)
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            // Add all schools initially
+            updateSchools('');
+        }
+
+        // Function to fill search box
+        function fillSearch(schoolName) {
+            document.getElementById('schoolSearch').value = schoolName;
+            updateSchools(schoolName);
+        }
+
+        // Function to update map and results list
+        function updateSchools(searchTerm = '') {
+            const searchInput = searchTerm || document.getElementById('schoolSearch').value.toLowerCase();
+            
+            // Clear existing markers
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+            
+            // Clear results list
+            const resultsList = document.getElementById('resultsList');
+            resultsList.innerHTML = '';
+            
+            // Filter schools
+            const filteredSchools = schools.filter(school => {
+                return searchInput === '' || school.name.toLowerCase().includes(searchInput);
+            });
+            
+            if (filteredSchools.length === 0 && searchInput !== '') {
+                resultsList.innerHTML = '<div class="text-center p-3">No schools found matching your search</div>';
+                return;
+            }
+            
+            // Add markers for filtered schools
+            filteredSchools.forEach(school => {
+                const marker = L.marker([school.lat, school.lng], {
+                    icon: L.divIcon({
+                        className: 'school-marker',
+                        html: '<i class="fas fa-school"></i>',
+                        iconSize: [30, 30]
+                    })
+                }).addTo(map);
+                
+                // Create popup content
+                const popupContent = `
+                    <div style="padding: 10px; max-width: 250px;">
+                        <h5 style="color: #004080; margin-bottom: 10px; font-size: 16px;">${school.name}</h5>
+                        <p style="margin-bottom: 5px;"><i class="fas fa-map-marker-alt"></i> ${school.address}</p>
+                        <p style="margin-bottom: 5px;"><i class="fas fa-phone"></i> ${school.contact}</p>
+                        <p style="margin-bottom: 5px;"><i class="fas fa-graduation-cap"></i> Est. ${school.established}</p>
+                        <div class="text-center mt-2">
+                            <a href="school-details.html?id=${school.id}" class="btn btn-sm btn-primary">View Details</a>
+                        </div>
+                    </div>
+                `;
+                
+                marker.bindPopup(popupContent);
+                markers.push(marker);
+                
+                // Add to results list
+                const listItem = document.createElement('a');
+                listItem.href = `school-details.html?id=${school.id}`;
+                listItem.className = 'list-group-item list-group-item-action school-item';
+                listItem.innerHTML = `
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">${school.name}</h6>
+                        <small>${Math.floor(Math.random() * 5) + 1} km</small>
+                    </div>
+                    <p class="mb-1"><i class="fas fa-map-marker-alt"></i> ${school.location}</p>
+                    <small class="text-muted">Est. ${school.established}</small>
+                `;
+                
+                // Click on list item to focus on marker
+                listItem.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    map.setView(marker.getLatLng(), 15);
+                    marker.openPopup();
+                });
+                
+                resultsList.appendChild(listItem);
+            });
+            
+            // Adjust map view to show all markers if there are any
+            if (filteredSchools.length > 0) {
+                const group = new L.featureGroup(markers);
+                map.fitBounds(group.getBounds().pad(0.2));
+            }
+        }
+        
+        // Initialize the map and search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initMap();
+            
+            // Set up event listeners
+            document.getElementById('searchBtn').addEventListener('click', function() {
+                updateSchools();
+            });
+            
+            document.getElementById('schoolSearch').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    updateSchools();
+                }
+            });
+            
+            // Search as user types (with slight delay)
+            let searchTimer;
+            document.getElementById('schoolSearch').addEventListener('input', function() {
+                clearTimeout(searchTimer);
+                searchTimer = setTimeout(() => {
+                    updateSchools();
+                }, 300);
+            });
+        });
+    </script>
+  <!-- FOOTER -->
+  <footer class="custom-footer">
+    <div class="custom-footer-container">
+      <div class="custom-footer-section">
+        <h3>Contact Us</h3>
+        <p>Email: <a href="mailto:school@example.com">school@example.com</a></p>
+        <p>Phone: <a href="tel:+923001234567">+92 300 1234567</a></p>
+      </div>
+      <div class="custom-footer-section">
+        <h3>Team Members</h3>
+        <ul>
+          <li>Marium</li>
+          <li>Miracle</li>
+          <li>Safa</li>
+          <li>Haya Fatima</li>
+        </ul>
+      </div>
+      <div class="custom-footer-section">
+        <h3>Teacher</h3>
+        <p>Miss Saira</p>
+      </div>
+      <div class="custom-footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="school_Info.html">School Info</a></li>
+          <li><a href="school_details.html">Admission</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="Map.html">Map</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="custom-footer-bottom">
+      <p>&copy; 2025 School Project. All rights reserved.</p>
+    </div>
+  </footer>
+
+    <script src="./assest/js/app.js"></script>
+</body>
+</html>

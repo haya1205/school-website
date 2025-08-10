@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information</title>
+    <link rel="stylesheet" href="./assest/css/style.css">
+    <link rel="stylesheet" href="./assest/css/school.css">
+  <link rel="stylesheet" href="./assest/fontawasome/css/all.min.css">
+
+</head>
+<body>
+ <!-- HEADER -->
+  <header>
+  <nav>
+    <div class="navbar">
+      <div class="logo">
+        <i class="fa-duotone fa-solid fa-school-circle-exclamation fa-beat fa-lg" ></i>
+      </div>
+
+      <!-- Hamburger Button -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="school_Info.html">School Info</a>
+        <a href="school_details.html">Admissions</a>
+        <a href="#">Contact</a>
+        <a href="Map.html">Map</a>
+      </div>
+
+       <div class="sign-in-btn">
+        <a href="singIn.html">Sign In</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- CARD START -->
+  <!-- Page Header -->
+<header>
+  <h1>School Info</h1>
+</header>
+
+<section class="intro-section">
+  <h2>Explore Top Schools in Karachi</h2>
+  <p>Here is a list of well-known schools with verified details to help parents make informed decisions.</p>
+</section>
+
+<!-- Animated Search Bar -->
+<div class="search-container" id="searchContainer">
+<div class="logo">
+  <i class="fa-solid fa-magnifying-glass fa-flip" style="color: #476094;"></i>
+
+</div>
+  <input
+    type="text"
+    id="schoolSearch"
+    placeholder="Search ..."
+    autofocus
+  />
+  
+</div>
+
+
+<!-- Cards container -->
+<div class="card-container" id="cardsContainer">
+  <div class="card" onclick="showMessage('The Greek Educators')">
+    <img src="assest/images/1 (1).png" alt="The Greek Educator" />
+    <div class="card-content">
+      <h3>The Greek Educator</h3>
+      <p>One of Karachi’s most prestigious institutions with a legacy of academic excellence.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="showMessage('Karachi American School (KAS)')">
+    <img src="assest/images/2.jpg" alt="Karachi American School (KAS)" />
+    <div class="card-content">
+      <h3>Karachi American School (KAS)</h3>
+      <p>Best School for expatriate business and diplomatic communities.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="showMessage('Pak-Turk Maarif International School')">
+    <img src="assest/images/3.jpg" alt="Pak-Turk Maarif School" />
+    <div class="card-content">
+      <h3>Pak-Turk Maarif International School</h3>
+      <p>An international school offering quality education with a global perspective.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="showMessage('The city School')">
+    <img src="assest/images/5.jpg" alt="The city School" />
+    <div class="card-content">
+      <h3>The city School</h3>
+      <p>Nationwide presence with a strong academic foundation.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="showMessage('Beaconhouse School System')">
+    <img src="assest/images/6.jpg" alt="Beaconhouse School System" />
+    <div class="card-content">
+      <h3>Beaconhouse School System</h3>
+      <p>A well-known chain offering international-standard education.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="showMessage('Karachi Grammer School')">
+    <img src="assest/images/7.jpg" alt="Karachi Grammer School" />
+    <div class="card-content">
+      <h3>Karachi Grammer School</h3>
+      <p>One of the oldest and most prestigious schools in Kharachi.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="showMessage('Generation School')">
+    <img src="assest/images/8.jpg" alt="Generation School" />
+    <div class="card-content">
+      <h3>Generation School</h3>
+      <p>Focused on child developement and creative learning.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="showMessage('Karachi Public School')">
+    <img src="assest/images/4.jpg" alt="Karachi Public School" />
+    <div class="card-content">
+      <h3>Karachi Public School</h3>
+      <p>Known for excellence in A-Level education and university preparation.</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="facilities animated-facilities">
+  <span>🍽️ Canteen</span>
+  <span>📚 Library</span>
+  <span>⚽ Playground</span>
+</div>
+
+
+
+  <section class="cta-section">
+    <h3>Is your school missing?</h3>
+    <p>Contact us to add your school to our verified list.</p>
+    <a href="contact.html" class="btn">Register Your School</a>
+  </section>
+
+  <section class="message">
+    "Mama Parsi is the best decision I made for my daughter!" – Mrs. Khatija, Parent
+  </section>
+
+  
+  
+
+  
+
+  
+
+
+
+  
+
+  <!-- FOOTER -->
+  <footer class="custom-footer">
+    <div class="custom-footer-container">
+      <div class="custom-footer-section">
+        <h3>Contact Us</h3>
+        <p>Email: <a href="mailto:school@example.com">school@example.com</a></p>
+        <p>Phone: <a href="tel:+923001234567">+92 300 1234567</a></p>
+      </div>
+      <div class="custom-footer-section">
+        <h3>Team Members</h3>
+        <ul>
+          <li>Marium</li>
+          <li>Miracle</li>
+          <li>Safa</li>
+          <li>Haya Fatima</li>
+        </ul>
+      </div>
+      <div class="custom-footer-section">
+        <h3>Teacher</h3>
+        <p>Miss Saira</p>
+      </div>
+      <div class="custom-footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="school_Info.html">School Info</a></li>
+          <li><a href="school_details.html">Admission</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="Map.html">Map</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="custom-footer-bottom">
+      <p>&copy; 2025 School Project. All rights reserved.</p>
+    </div>
+  </footer>
+
+    <script src="./assest/js/app.js"></script>
+    <script src="./assest/js/school.js"></script>
+</body>
+</html>
