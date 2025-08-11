@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admission Form</title>
+
+  <link rel="stylesheet" href="./assest/css/style.css" />
+  <link rel="stylesheet" href="./assest/fontawasome/css/all.min.css">
+
+</head>
+
+<style>
+  body {
+    background: none !important;
+  }
+  table{
+    color: black;
+  }
+</style>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <nav>
+      <div class="navbar">
+        <div class="logo">
+          <i class="fa-duotone fa-solid fa-school-circle-exclamation fa-beat fa-lg"></i>
+        </div>
+
+        <!-- Hamburger Button -->
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="nav-links" id="navLinks">
+          <a href="index.html">Home</a>
+          <a href="school_Info.html">School Info</a>
+          <a href="school_details.html">Admissions</a>
+          <a href="Admission.html">Contact</a>
+          <a href="Map.html">Map</a>
+        </div>
+
+        <!-- Sign In button replacing search box -->
+        <div class="sign-in-btn">
+          <a href="singIn.html">Sign In</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <section>
+    <h1 align="center" style="background-color: rgb(0 19 49); color:white; padding: 100px 0px 40px 0px">Contact Us</h1>
+    <form>
+      <table cellpadding="10" cellspacing="10">
+        <tr>
+          <td><label>Name:</label></td>
+          <td><input type="text" placeholder="Enter Your Name" required></td>
+        </tr>
+
+        <tr>
+          <td><label>Father's/Guardian's Name:</label></td>
+          <td><input type="text" placeholder="Enter Your Father's Name"></td>
+        </tr>
+
+        <tr>
+          <td><label>Email:</label></td>
+          <td><input type="email" placeholder="Enter Your Email" id="email"></td>
+        </tr>
+
+        <tr>
+          <td><label>DOB:</label></td>
+          <td><input type="date" placeholder="Enter Your DOB"></td>
+        </tr>
+
+        <tr>
+          <td><label>Age:</label></td>
+          <td><input type="number" min="3" max="18"></td>
+        </tr>
+
+        <tr>
+          <td><label>Select Gender:</label></td>
+          <td><input type="radio" value="male" name="Gender" checked required>Male
+            <input type="radio" value="female" name="Gender" checked>Female
+          </td>
+        </tr>
+
+        <tr>
+          <td><label>Permanent Address:</label></td>
+          <td><input type="address" placeholder="Enter Your Address"></td>
+        </tr>
+
+        <tr>
+          <td><label>Contact:</label></td>
+          <td><input type="number" placeholder="Enter Your Contact" id="contact"></td>
+        </tr>
+
+        <tr>
+          <td><label>Select School</label></td>
+          <td><select>
+              <option readonly>Select School</option>
+              <option value="Karachi grammar school">Karachi Grammar School</option>
+              <option value="Generation school">Generation School</option>
+              <option value="Karachi American school">Karachi American School</option>
+              <option value="The City school">The City School</option>
+            </select></td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td><button type="reset">Reset</button></td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td><button type="submit">Submit</button></td>
+        </tr>
+
+        <tr>
+          <td><label>Message</label></td>
+          <td><textarea placeholder="Enter Your Message Here...." maxlength="40"></textarea></td>
+        </tr>
+      </table>
+    </form>
+
+  </section>
+  <!-- FOOTER -->
+  <footer class="custom-footer">
+    <div class="custom-footer-container">
+      <div class="custom-footer-section">
+        <h3>Contact Us</h3>
+        <p>Email: <a href="mailto:school@example.com">school@example.com</a></p>
+        <p>Phone: <a href="tel:+923001234567">+92 300 1234567</a></p>
+      </div>
+      <div class="custom-footer-section">
+        <h3>Team Members</h3>
+        <ul>
+          <li>Marium</li>
+          <li>Miracle</li>
+          <li>Safa</li>
+          <li>Haya Fatima</li>
+        </ul>
+      </div>
+      <div class="custom-footer-section">
+        <h3>Teacher</h3>
+        <p>Miss Saira</p>
+      </div>
+      <div class="custom-footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="school_Info.html">School Info</a></li>
+          <li><a href="school_details.html">Admission</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+          <li><a href="Map.html">Map</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="custom-footer-bottom">
+      <p>&copy; 2025 School Project. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="./assest/js/app.js"></script>
+  <script src="./assest/bhootstrap/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
