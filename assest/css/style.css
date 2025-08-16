@@ -5,7 +5,7 @@ body {
  background-position: coverc;
  background-size: 184%;
   font-family: 'Poppins', sans-serif;
-  color: #fff;
+  color: black;
 }
 
 /* Navbar Styling */
@@ -355,7 +355,7 @@ body {
 }
 
 .custom-footer-section {
-  flex: 1 1 220px;
+  /* flex: 1 1 220px; */
   min-width: 200px;
 }
 

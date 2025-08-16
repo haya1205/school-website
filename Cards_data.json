@@ -1,0 +1,53 @@
+[ 
+    {
+
+        "s_id": 1,
+        "s_name": "The Greek Educator",
+        "s_image": "assest/images/1 (1).png",
+        "description": "One of Karachi’s most prestigious institutions with a legacy of academic excellence."
+      },
+      {
+        "s_id": 2,
+        "s_name": "Karachi American School (KAS)",
+        "s_image": "assest/images/2.jpg",
+        "description": "Best School for expatriate business and diplomatic communities."
+      },
+      {
+        "s_id": 3,
+        "s_name": "Pak-Turk Maarif International School",
+        "s_image": "assest/images/3.jpg",
+        "description": "An international school offering quality education with a global perspective."
+      },
+      {
+        "s_id": 4,
+        "s_name": "The City School",
+        "s_image": "assest/images/5.jpg",
+        "description": "Nationwide presence with a strong academic foundation."
+      },
+      {
+        "s_id": 5,
+        "s_name": "Beaconhouse School System",
+        "s_image": "assest/images/6.jpg",
+        "description": "A well-known chain offering international-standard education."
+      },
+      {
+        "s_id": 6,
+        "s_name": "Karachi Grammar School",
+        "s_image": "assest/images/7.jpg",
+        "description": "One of the oldest and most prestigious schools in Karachi."
+      },
+      {
+        "s_id": 7,
+        "s_name": "Generation School",
+        "s_image": "assest/images/8.jpg",
+        "description": "Focused on child development and creative learning."
+      },
+      {
+        "s_id": 8,
+        "s_name": "Karachi Public School",
+        "s_image": "assest/images/4.jpg",
+        "description": "Known for excellence in A-Level education and university preparation."
+      }
+ 
+
+]
